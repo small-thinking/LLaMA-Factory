@@ -38,6 +38,12 @@ git config --global core.editor vim
 git config --global color.ui auto
 
 # Soft link ssh and Git setting
+# Ensure /workspace exists and is writable
+if [ ! -d "/workspace" ]; then
+  mkdir -p /workspace
+fi
+chmod u+w /workspace
+
 mkdir -p ~/.ssh
 cp /workspace/bootstrap/config/.ssh/id_ed25519 ~/.ssh/id_ed25519
 cp /workspace/bootstrap/config/.ssh/id_ed25519.pub ~/.ssh/id_ed25519.pub
@@ -62,7 +68,6 @@ cat /workspace/bootstrap/.bashrc >> ~/.bashrc
 echo "=== Done ==="
 echo "Run 'source ~/.bashrc' to activate oh-my-bash"
 source ~/.bashrc
-
 
 # Create folders if not exist
 mkdir -p /workspace/models
